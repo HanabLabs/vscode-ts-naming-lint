@@ -1,0 +1,75 @@
+{
+  "name": "naming-convention-checker",
+  "displayName": "TypeScript Naming Convention Checker",
+  "description": "Enforces naming conventions for constants and functions in TypeScript files using AST analysis.",
+  "publisher": "hanablabs001",
+  "version": "0.0.4",
+  "icon": "icon.png",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HanabLabs/vscode-ts-naming-lint"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "activationEvents": [
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Naming Convention Checker",
+      "properties": {
+        "namingConventionChecker.constantCase": {
+          "type": "string",
+          "default": "UPPER_SNAKE_CASE",
+          "enum": [
+            "UPPER_SNAKE_CASE",
+            "camelCase",
+            "PascalCase"
+          ],
+          "description": "Naming convention for constants"
+        },
+        "namingConventionChecker.functionCase": {
+          "type": "string",
+          "default": "camelCase",
+          "enum": [
+            "UPPER_SNAKE_CASE",
+            "camelCase",
+            "PascalCase"
+          ],
+          "description": "Naming convention for functions"
+        },
+        "namingConventionChecker.severity": {
+          "type": "string",
+          "default": "Warning",
+          "enum": [
+            "Error",
+            "Warning",
+            "Information",
+            "Hint"
+          ],
+          "description": "Severity level for diagnostics"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "test": "node ./out/test/checker.test.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "^20.0.0"
+  },
+  "dependencies": {
+    "typescript": "^5.3.0"
+  }
+}
